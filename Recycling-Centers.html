@@ -121,7 +121,25 @@ Licence URI: https://www.os-templates.com/template-terms
               fetch ("Recycling-centers.csv")
               .then(res => res.text())
               .then(csv => {
-                console.log(csv);
+                // CLEAR HTML TABLE
+                table.innerHTML = "";
+                
+                // SPLIT INTO ROWS
+                let rows = csv.split("\r\n");
+                
+                // LOOP THOUGH ROWS + SPLIT COLUMNS
+                for (let row of rows) {
+                  let cols = row.match(/(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g);
+                  if (cols != null) 
+                  {
+                    let tr = table.insertRow();
+                    for (let col of cols) 
+                    {
+                      let td = tr.insertCell();
+                      td.innerHTML = col.replace(/(^"|"$)/g, "");
+                    }
+                  }
+                }
               });
             };             
             
