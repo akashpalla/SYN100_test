@@ -95,9 +95,42 @@ Licence URI: https://www.os-templates.com/template-terms
     <article id="points" class="group">
       <div class="first">
         <h2 id="section-3"> </h2>
-        <p>This is a test. This may fail. But who knows! I sure don't 
-
-        </p>
+        <style>
+         * {
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+          }
+          
+         table {
+          border-collapse: collapse;
+         }
+         table td {
+           padding: 10px;
+           border: 1px solid #000;
+          }   
+        </style>
+        <body>
+          <!-- Display CSV Here-->
+          <table id="table"></table>
+          <script>
+            window.onload = () => {
+              // HTML TABLE
+              var table = document.getElementById("table");
+              
+              // FETCH CSV
+              fetch ("Recycling-centers.csv")
+              .then(res => res.text())
+              .then(csv => {
+                console.log(csv);
+              });
+            };             
+            
+            
+          </script>
+          
+        </body>
+        
+        
       </div>
 
     </article>
